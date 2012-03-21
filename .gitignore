@@ -10,3 +10,8 @@
 /POCOChangeTracker.Tests/obj
 /POCOChangeTracker.Tests/bin
 /packages
+/_ReSharper.POCO.Monitoring
+/POCO.Monitoring/bin
+/POCO.Monitoring/obj
+/POCO.Monitoring.Tests/bin
+/POCO.Monitoring.Tests/obj
