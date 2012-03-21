@@ -1,0 +1,12 @@
+
+/_ReSharper.POCOChangeTracker
+*.suo
+*.user
+/POCOChangeTracker/bin
+/POCOChangeTracker/obj
+/_ReSharper.POCOUndoRedoFramework
+/Bin/Release
+/Bin/Debug
+/POCOChangeTracker.Tests/obj
+/POCOChangeTracker.Tests/bin
+/packages
