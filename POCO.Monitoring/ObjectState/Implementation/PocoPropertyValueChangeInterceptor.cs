@@ -1,4 +1,5 @@
 ﻿using System;
+using Castle.Core.Internal;
 using Castle.DynamicProxy;
 
 namespace POCO.Monitoring.ObjectState.Implementation
@@ -26,14 +27,13 @@ namespace POCO.Monitoring.ObjectState.Implementation
                         if (!invocation.Method.ReturnType.IsPrimitive)
                         {
                             var attribs =
-                                invocation.Method.ReturnType.GetCustomAttributes(typeof (MonitorPocoStateAttribute), true);
+                                invocation.Method.ReturnType.GetCustomAttributes(typeof(MonitorPocoStateAttribute), true);
                             if (attribs.Length > 0)
                             {
                                 invocation.Proceed();
                                 undoRedo.ChangeContainer.InsertChildTracker(invocation.ReturnValue as IObjectStateManager);
                                 return;
                             }
-
                         }
                     }
                 }

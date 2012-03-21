@@ -16,7 +16,7 @@ namespace POCO.Monitoring.ObjectState
             {
                 if (ProxyGenerator == null)
                 {
-                    ProxyGenerator = new ProxyGenerator(new DefaultProxyBuilder());
+                    ProxyGenerator = new ProxyGenerator(new PersistentProxyBuilder());
                 }
             }
         }
@@ -29,16 +29,18 @@ namespace POCO.Monitoring.ObjectState
                 return default(T);
             }
 
-            Type nominalType = @object.GetType();
-
             var proxyGenerationOptions = new ProxyGenerationOptions(new ProxyGenerationHook());
             proxyGenerationOptions.AddMixinInstance(new ObjectStateManager());
 
-            return (T) ProxyGenerator.CreateClassProxyWithTarget(nominalType,
-                                                                 new[] {typeof (IObjectStateManager)},
-                                                                 @object,
-                                                                 proxyGenerationOptions,
-                                                                 new PocoPropertyValueChangeInterceptor());
+            var proxy = (T)ProxyGenerator.CreateClassProxyWithTarget(@object.GetType(),
+                                                                      new[] { typeof(IObjectStateManager) },
+                                                                      @object,
+                                                                      proxyGenerationOptions,
+                                                                      new PocoPropertyValueChangeInterceptor());
+
+            ((IObjectStateManager)proxy).SetDocument(@object);
+
+            return proxy;
         }
 
         public static void Undo(object @object)
