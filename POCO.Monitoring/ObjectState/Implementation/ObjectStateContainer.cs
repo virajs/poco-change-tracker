@@ -11,26 +11,26 @@ namespace POCO.Monitoring.ObjectState.Implementation
 
         private readonly Stack<Array> _undoStack;
 
-        private readonly Stack<IObjectStateManager> _children;
+        private readonly Stack<ObjectStateContainer> _childContainers;
 
         private readonly object _parent;
 
-        private readonly IObjectStateManager _stateManager;
+        private readonly IPocoStateManagerContainer _state;
 
-        public ObjectStateContainer(IObjectStateManager stateManager, object parent)
+        public ObjectStateContainer(IPocoStateManagerContainer state, object parent)
         {
-            _stateManager = stateManager;
+            _state = state;
             _redoStack = new Stack<Array>();
             _undoStack = new Stack<Array>();
-            _children = new Stack<IObjectStateManager>();
+            _childContainers = new Stack<ObjectStateContainer>();
             _parent = parent;
         }
 
-        public void InsertChildTracker(IObjectStateManager childStateManager)
+        public void InsertChildTracker(ObjectStateContainer childStateManager)
         {
-            if(!_children.Contains(childStateManager))
+            if(!_childContainers.Contains(childStateManager))
             {
-                _children.Push(childStateManager);
+                _childContainers.Push(childStateManager);
             }
         }
 
@@ -54,9 +54,9 @@ namespace POCO.Monitoring.ObjectState.Implementation
             get
             {
                 var canUndo = (_undoStack.Count > 0 ? true : false);
-                if(_children.Count > 0)
+                if(_childContainers.Count > 0)
                 {
-                    canUndo = (canUndo || _children.Any(p => p.ChangeContainer.CanUndo));
+                    canUndo = (canUndo || _childContainers.Any(p => p.CanUndo));
                 }
                 return canUndo;
             }
@@ -67,9 +67,9 @@ namespace POCO.Monitoring.ObjectState.Implementation
             get
             {
                 var canRedo = (_redoStack.Count > 0 ? true : false);
-                if (_children.Count > 0)
+                if (_childContainers.Count > 0)
                 {
-                    canRedo = (canRedo || _children.Any(p => p.ChangeContainer.CanRedo));
+                    canRedo = (canRedo || _childContainers.Any(p => p.CanRedo));
                 }
                 return canRedo;
             }
@@ -96,17 +96,17 @@ namespace POCO.Monitoring.ObjectState.Implementation
                 } while (mainStack.Count > 0);
             }
 
-            if (_children.Count > 0)
+            if (_childContainers.Count > 0)
             {
-                foreach (var manager in _children)
+                foreach (var manager in _childContainers)
                 {
                     if (undo)
                     {
-                        manager.Undo();
+                        manager.UndoChanges();
                     }
                     else
                     {
-                        manager.Redo();
+                        manager.RedoChanges();
                     }
                 }
             }
@@ -114,7 +114,7 @@ namespace POCO.Monitoring.ObjectState.Implementation
 
         private void WriteData(Stack<Array> stack, string propertyName, object previousValue, bool undo)
         {
-            var property = _stateManager.GetProperty(propertyName);
+            var property = _state.GetProperty(propertyName);
 
             var oldVal = property.GetValue(_parent, null);
             stack.Push(new[] { propertyName, oldVal });
@@ -134,7 +134,7 @@ namespace POCO.Monitoring.ObjectState.Implementation
 
         private static void RunAction(bool undo, object value)
         {
-            var objectStateManager = value as IObjectStateManager;
+            var objectStateManager = value as IPocoStateManagerContainer;
             if (objectStateManager != null)
             {
                 if (undo)

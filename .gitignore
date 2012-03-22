@@ -15,3 +15,12 @@
 /POCO.Monitoring/obj
 /POCO.Monitoring.Tests/bin
 /POCO.Monitoring.Tests/obj
+/Bin/POCO.Monitoring.dll
+/Bin/Tests/Castle.Core.dll
+/Bin/Tests/Castle.Core.xml
+/Bin/Tests/CastleDynProxy2.dll
+/Bin/Tests/POCO.Monitoring.Tests.dll
+/Bin/Tests/POCO.Monitoring.Tests.dll.config
+/Bin/Tests/POCO.Monitoring.dll
+/Bin/Tests/nunit.framework.dll
+/Bin/Tests/nunit.framework.xml

@@ -10,7 +10,7 @@ namespace POCO.Monitoring.ObjectState.Implementation
         {
             if (invocation.Method.IsPublic && (invocation.Method.Name.StartsWith("get_", StringComparison.Ordinal) || invocation.Method.Name.StartsWith("set_", StringComparison.Ordinal)))
             {
-                var undoRedo = invocation.Proxy as IObjectStateManager;
+                var undoRedo = invocation.Proxy as IPocoStateManagerContainer;
                 if (undoRedo != null)
                 {
                     string propertyName = invocation.Method.Name.Replace("set_", string.Empty).Replace("get_",
@@ -26,12 +26,11 @@ namespace POCO.Monitoring.ObjectState.Implementation
                     {
                         if (!invocation.Method.ReturnType.IsPrimitive)
                         {
-                            var attribs =
-                                invocation.Method.ReturnType.GetCustomAttributes(typeof(MonitorPocoStateAttribute), true);
+                            var attribs = invocation.Method.ReturnType.GetCustomAttributes(typeof (MonitorPocoStateAttribute), true);
                             if (attribs.Length > 0)
                             {
                                 invocation.Proceed();
-                                undoRedo.ChangeContainer.InsertChildTracker(invocation.ReturnValue as IObjectStateManager);
+                                undoRedo.InsertChildMonitor(invocation.ReturnValue as IPocoStateManagerContainer);
                                 return;
                             }
                         }

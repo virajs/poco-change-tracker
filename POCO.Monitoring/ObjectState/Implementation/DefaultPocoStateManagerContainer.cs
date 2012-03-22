@@ -5,34 +5,43 @@ using System.Reflection;
 namespace POCO.Monitoring.ObjectState.Implementation
 {
     [Serializable]
-    public class ObjectStateManager : IObjectStateManager
+    public sealed class DefaultPocoStateManagerContainer : IPocoStateManagerContainer
     {
-        private object _parent = null;
+        private object _parent;
 
-        private Type _parentType = null;
+        private Type _parentType;
 
-        private PropertyInfo[] _properties = null;
+        private PropertyInfo[] _properties;
 
-        private ObjectStateContainer _changeContainer = null;
+        private ObjectStateContainer _container;
 
-        public object Target { get { return _parentType; } }
-
-        public ObjectStateContainer ChangeContainer
+        public object Target
         {
-            get { return _changeContainer; }
+            get
+            {
+                return _parentType;
+            }
         }
 
-        public object GetDocument()
+        public ObjectStateContainer Container
+        {
+            get
+            {
+                return _container;
+            }
+        }
+
+        public object GetTarget()
         {
             return _parent;
         }
 
-        public void SetDocument(object document)
+        public void SetTarget(object document)
         {
             _parent = document;
             if (_parent != null)
             {
-                _changeContainer = new ObjectStateContainer(this, _parent);
+                _container = new ObjectStateContainer(this, _parent);
                 _parentType = _parent.GetType();
                 _properties = _parentType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
             }
@@ -40,22 +49,23 @@ namespace POCO.Monitoring.ObjectState.Implementation
 
         public void OnPropertyChanged(string propertyName, object value)
         {
-            ChangeContainer.PushChanges(propertyName, value);
+            _container.PushChanges(propertyName, value);
         }
 
         public void Undo()
         {
-            if (ChangeContainer != null && ChangeContainer.CanUndo)
+            if (_container != null && _container.CanUndo)
             {
-                ChangeContainer.UndoChanges();
+                _container.UndoChanges();
+                
             }
         }
 
         public void Redo()
         {
-            if (ChangeContainer != null && ChangeContainer.CanRedo)
+            if (_container != null && _container.CanRedo)
             {
-                ChangeContainer.RedoChanges();
+                _container.RedoChanges();
             }
         }
 
@@ -78,6 +88,11 @@ namespace POCO.Monitoring.ObjectState.Implementation
         {
             PropertyInfo property = GetProperty(name);
             return property.GetValue(_parent, null);
+        }
+
+        public void InsertChildMonitor(IPocoStateManagerContainer child)
+        {
+            _container.InsertChildTracker(child.Container);
         }
     }
 }

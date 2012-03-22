@@ -41,7 +41,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Bin\Debug\</OutputPath>
+    <OutputPath>..\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,7 +58,7 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>..\Bin\Release\</OutputPath>
+    <OutputPath>..\Bin\</OutputPath>
     <DefineConstants>CODE_ANALYSIS</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>none</DebugType>
@@ -84,14 +84,14 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ObjectState\PocoMonitorUtility.cs" />
-    <Compile Include="ObjectState\Implementation\IObjectStateManager.cs" />
+    <Compile Include="ObjectState\PocoStateMonitorUtility.cs" />
+    <Compile Include="ObjectState\Implementation\IPocoStateManagerContainer.cs" />
     <Compile Include="ObjectState\Implementation\ObjectStateContainer.cs" />
-    <Compile Include="ObjectState\Implementation\ObjectStateManager.cs" />
+    <Compile Include="ObjectState\Implementation\DefaultPocoStateManagerContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ObjectState\Implementation\PocoPropertyValueChangeInterceptor.cs" />
     <Compile Include="ObjectState\Implementation\ProxyGenerationHook.cs" />
-    <Compile Include="ObjectState\Implementation\MonitorPocoStateAttribute.cs" />
+    <Compile Include="ObjectState\MonitorPocoStateAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

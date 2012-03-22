@@ -5,6 +5,7 @@ using System.Text;
 
 namespace POCO.Monitoring.Tests
 {
+    [POCO.Monitoring.ObjectState.MonitorPocoState]
     public class Customer
     {
         public virtual int Id { get; set; }
