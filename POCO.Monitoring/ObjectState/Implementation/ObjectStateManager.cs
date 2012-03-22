@@ -22,12 +22,12 @@ namespace POCO.Monitoring.ObjectState.Implementation
             get { return _changeContainer; }
         }
 
-        object IObjectStateManager.GetDocument()
+        public object GetDocument()
         {
             return _parent;
         }
 
-        void IObjectStateManager.SetDocument(object document)
+        public void SetDocument(object document)
         {
             _parent = document;
             if (_parent != null)
@@ -38,12 +38,12 @@ namespace POCO.Monitoring.ObjectState.Implementation
             }
         }
 
-        void IObjectStateManager.OnPropertyChanged(string propertyName, object value)
+        public void OnPropertyChanged(string propertyName, object value)
         {
             ChangeContainer.PushChanges(propertyName, value);
         }
 
-        void IObjectStateManager.Undo()
+        public void Undo()
         {
             if (ChangeContainer != null && ChangeContainer.CanUndo)
             {
@@ -51,7 +51,7 @@ namespace POCO.Monitoring.ObjectState.Implementation
             }
         }
 
-        void IObjectStateManager.Redo()
+        public void Redo()
         {
             if (ChangeContainer != null && ChangeContainer.CanRedo)
             {
