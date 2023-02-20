@@ -1,0 +1,12 @@
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/bin/Debug/net7.0/Poco.Change.Tracking.deps.json
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/bin/Debug/net7.0/Poco.Change.Tracking.dll
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/bin/Debug/net7.0/Poco.Change.Tracking.pdb
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/obj/Debug/net7.0/Poco.Change.Tracking.csproj.AssemblyReference.cache
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/obj/Debug/net7.0/Poco.Change.Tracking.GeneratedMSBuildEditorConfig.editorconfig
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/obj/Debug/net7.0/Poco.Change.Tracking.AssemblyInfoInputs.cache
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/obj/Debug/net7.0/Poco.Change.Tracking.AssemblyInfo.cs
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/obj/Debug/net7.0/Poco.Change.Tracking.csproj.CoreCompileInputs.cache
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/obj/Debug/net7.0/Poco.Change.Tracking.dll
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/obj/Debug/net7.0/refint/Poco.Change.Tracking.dll
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/obj/Debug/net7.0/Poco.Change.Tracking.pdb
+/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/obj/Debug/net7.0/ref/Poco.Change.Tracking.dll

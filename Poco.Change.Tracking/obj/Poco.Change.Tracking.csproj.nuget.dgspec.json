@@ -1,0 +1,69 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/Poco.Change.Tracking.csproj": {}
+  },
+  "projects": {
+    "/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/Poco.Change.Tracking.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/Poco.Change.Tracking.csproj",
+        "projectName": "Poco.Change.Tracking",
+        "projectPath": "/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/Poco.Change.Tracking.csproj",
+        "packagesPath": "/Users/viraj.s/.nuget/packages/",
+        "outputPath": "/Users/viraj.s/Documents/projects/spikes/poco-change-tracker/Poco.Change.Tracking/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/viraj.s/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.nuget.org/api/v2/": {},
+          "https://xaptechnologies.pkgs.visualstudio.com/_packaging/Xap/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Castle.Core": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/7.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
